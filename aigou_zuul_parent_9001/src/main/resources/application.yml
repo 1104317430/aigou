@@ -20,5 +20,8 @@ zuul:
     #第二种写法
     plat.serviceId: aigou_plat
     plat.path: /employee/**
+
+    product.serviceId: aigou_product
+    product.path: /product/**
   ignored-services: "*"
   prefix: /aigou

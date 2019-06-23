@@ -1,0 +1,24 @@
+#端口
+server:
+  port: 8002
+#Spring配置
+spring:
+  #应用名称
+  application:
+    name: AIGOU_PRODUCT
+  #连接池
+  datasource:
+    url: jdbc:mysql://localhost:3306/aigou
+    username: root
+    password: zhuhai321.
+    driver-class-name: com.mysql.jdbc.Driver
+#注册中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:7001/eureka
+  instance:
+    prefer-ip-address: true
+#配置应用名称
+mybatis-plus:
+  type-aliases-package: cn.cqlyy.aigou.domain,cn.cqlyy.aigou.query
