@@ -8,6 +8,19 @@ package cn.cqlyy.aigou.query;
 public class BaseQuery {
     private Integer page=1;
     private Integer rows=10;
+    private String keyword;
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public Integer getStart(){
+        return (page-1)*rows;
+    }
 
     public Integer getPage() {
         return page;

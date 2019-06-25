@@ -48,6 +48,19 @@ public class Brand extends Model<Brand> {
      */
     private String logo;
 
+    /**
+     * 关联产品类型
+     */
+    @TableField(exist = false)
+    private ProductType productType;
+
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
+    }
 
     public Long getId() {
         return id;
