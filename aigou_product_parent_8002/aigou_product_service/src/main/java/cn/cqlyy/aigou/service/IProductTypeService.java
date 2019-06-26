@@ -16,5 +16,4 @@ import java.util.List;
 public interface IProductTypeService extends IService<ProductType> {
 
     List<ProductType> selectTreeData();
-
 }
