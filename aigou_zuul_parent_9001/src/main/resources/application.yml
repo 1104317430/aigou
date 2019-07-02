@@ -23,5 +23,8 @@ zuul:
 
     product.serviceId: aigou_product
     product.path: /product/**
+
+    common.serviceId: common-provider
+    common.path: /common/**
   ignored-services: "*"
   prefix: /aigou

@@ -1,10 +1,15 @@
 package cn.cqlyy.aigou.domain;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * <p>
@@ -83,6 +88,36 @@ public class Product extends Model<Product> {
     private Integer goodCommentCount;
     private Integer commonCommentCount;
     private Integer badCommentCount;
+
+    @TableField(exist = false)
+    private ProductExt productExt;
+
+    public ProductExt getProductExt() {
+        return productExt;
+    }
+
+    public void setProductExt(ProductExt productExt) {
+        this.productExt = productExt;
+    }
+
+    public String getOnSaleTimeStr(){
+        Long onSaleTime = getOnSaleTime();
+        if (onSaleTime!=null) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String format = simpleDateFormat.format(new Date(onSaleTime));
+            return format;
+        }
+        return "未知";
+    }
+    public String getOffSaleTimeStr(){
+        Long offSaleTime = getOffSaleTime();
+        if (offSaleTime!=null) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String format = simpleDateFormat.format(new Date(offSaleTime));
+            return format;
+        }
+        return "未知";
+    }
 
 
     public Long getId() {
@@ -253,6 +288,9 @@ public class Product extends Model<Product> {
         this.badCommentCount = badCommentCount;
     }
 
+    public void setProductTypeId(Long productTypeId){
+        this.productType=productTypeId;
+    }
     @Override
     protected Serializable pkVal() {
         return this.id;

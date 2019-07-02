@@ -1,5 +1,7 @@
 package cn.cqlyy.aigou.web.controller;
 
+import cn.cqlyy.aigou.domain.Specification;
+import cn.cqlyy.aigou.service.IProductExtService;
 import cn.cqlyy.aigou.service.IProductService;
 import cn.cqlyy.aigou.domain.Product;
 import cn.cqlyy.aigou.query.ProductQuery;
@@ -9,6 +11,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -16,6 +19,7 @@ import java.util.List;
 public class ProductController {
     @Autowired
     public IProductService productService;
+
 
     /**
     * 保存和修改公用的
@@ -27,6 +31,7 @@ public class ProductController {
         try {
             if(product.getId()!=null){
                 productService.updateById(product);
+                product.setUpdateTime(new Date().getTime());
             }else{
                 productService.insert(product);
             }
@@ -70,8 +75,6 @@ public class ProductController {
 
         return productService.selectList(null);
     }
-
-
     /**
     * 分页查询数据
     *
@@ -85,4 +88,5 @@ public class ProductController {
             page = productService.selectPage(page);
             return new PageList<Product>(page.getTotal(),page.getRecords());
     }
+
 }
